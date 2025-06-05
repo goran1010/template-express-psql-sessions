@@ -13,6 +13,9 @@ const __dirname = path.dirname(__filename);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
+
 import indexRouter from "./routes/indexRouter.js";
 
 app.use("/", indexRouter);

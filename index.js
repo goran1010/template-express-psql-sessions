@@ -34,7 +34,7 @@ app.use(
       pool: pool,
       tableName: "session",
     }),
-    secret: COOKIE_SECRET,
+    secret: "TEMP_SECRET",
     resave: false,
     saveUninitialized: false,
     cookie: {

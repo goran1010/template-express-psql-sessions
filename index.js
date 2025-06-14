@@ -1,16 +1,12 @@
 import express from "express";
-import session from "express-session";
 import passport from "./auth/passport.js";
-import connectPgSimple from "connect-pg-simple";
-const PgSession = connectPgSimple(session);
-import pool from "./db/pool.js";
 import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-const COOKIE_SECRET = process.env.COOKIE_SECRET;
 import flash from "connect-flash";
 app.use(flash());
+import sessionMiddleware from "./auth/sessionMiddleware.js";
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -28,20 +24,7 @@ app.use(express.static(assetsPath));
 
 import indexRouter from "./routes/indexRouter.js";
 
-app.use(
-  session({
-    store: new PgSession({
-      pool: pool,
-      tableName: "session",
-    }),
-    secret: "TEMP_SECRET",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-    },
-  })
-);
+app.use(sessionMiddleware);
 app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;

@@ -4,6 +4,7 @@ const PgSession = connectPgSimple(session);
 import pool from "../db/pool.js";
 import dotenv from "dotenv";
 dotenv.config();
+const NUMBER_OF_DAYS = 30;
 
 const COOKIE_SECRET = process.env.COOKIE_SECRET;
 
@@ -16,7 +17,7 @@ const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 30 * 24 * 60 * 60 * 1000,
+    maxAge: NUMBER_OF_DAYS * 24 * 60 * 60 * 1000,
   },
 });
 

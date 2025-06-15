@@ -35,7 +35,9 @@ app.use("/", indexRouter);
 
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).send(err.message || "500 Internal server error");
+  res.status(500).render("errors/error-500", {
+    errorMessage: err.message || "Error 500: Internal Server Error",
+  });
 });
 
 app.listen(PORT, () => {

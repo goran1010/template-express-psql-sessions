@@ -35,7 +35,9 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
+  // eslint-disable-next-line no-console
   console.error(err);
   res.status(500).render("errors/error-500", {
     errorMessage: err.message || "Error 500: Internal Server Error",
@@ -43,5 +45,6 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`App started at port: ${PORT}`);
 });

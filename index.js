@@ -35,6 +35,10 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 
+app.use((req, res) => {
+  res.status(404).render("errors/error-404");
+});
+
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   // eslint-disable-next-line no-console

@@ -8,6 +8,7 @@ import flash from "connect-flash";
 app.use(flash());
 import sessionMiddleware from "./auth/sessionMiddleware.js";
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 import path from "node:path";

@@ -49,7 +49,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, (error) => {
+  if (error) {
+    throw error;
+  }
   // eslint-disable-next-line no-console
   console.log(`App started at port: ${PORT}`);
 });

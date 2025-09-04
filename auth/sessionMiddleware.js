@@ -2,8 +2,6 @@ import session from "express-session";
 import connectPgSimple from "connect-pg-simple";
 const PgSession = connectPgSimple(session);
 import pool from "../db/pool.js";
-import dotenv from "dotenv";
-dotenv.config();
 const NUMBER_OF_DAYS = 30;
 
 const COOKIE_SECRET = process.env.COOKIE_SECRET;
@@ -13,7 +11,7 @@ const sessionMiddleware = session({
     pool: pool,
     tableName: "session",
   }),
-  secret: "TEMP_SECRET",
+  secret: COOKIE_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {

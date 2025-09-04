@@ -1,6 +1,4 @@
 import { Pool } from "pg";
-import dotenv from "dotenv";
-dotenv.config();
 
 const DATABASE_HOST = process.env.DATABASE_HOST;
 const DATABASE_USER = process.env.DATABASE_USER;
